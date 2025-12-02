@@ -1,4 +1,4 @@
-## streamlit run viz_dashboard.py
+## streamlit run streamlit_app/home.py
 import streamlit as st
 
 # streamlit page config
@@ -19,5 +19,19 @@ with st.expander('About this Data Viz'):
                 """)
     # iris_image = Image.open("imgs/iris_species.png")
     # st.image(iris_image)
+
+
+st.header("Audience")
+st.markdown("""
+            **SOME TEXT** [emphasise the importance of explaining net zero 
+            cobenefits to population]
+            """)
+
+
+st.header("TLDR")
+st.markdown("""
+            **SOME TEXT** [emphasise the importance of explaining net zero 
+            cobenefits to population]
+            """)
 
 # load Welsh data
