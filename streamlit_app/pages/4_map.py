@@ -1,6 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+import matplotlib as mpl
 import pandas as pd
 import geopandas as gpd
 
@@ -39,9 +40,13 @@ lsoa_cardiff_wimd = lsoa_gdfCar.merge(
 fig, ax = plt.subplots(figsize=(7, 7))
 
 # Plot the map WITHOUT the automatic legend
+norm = mpl.colors.Normalize(vmin=lsoa_cardiff_wimd['WIMD 2025 overall quintile'].min(), vmax=lsoa_cardiff_wimd['WIMD 2025 overall quintile'].max())
+colors = [plt.cm.viridis(norm(value)) for _, value in lsoa_cardiff_wimd[['WIMD 2025 overall quintile']].iterrows()]
+
+fig, ax = plt.subplots(figsize=(6, 4))
 lsoa_cardiff_wimd.plot(
     column='WIMD 2025 overall quintile',
-    cmap='RdYlBu_r',
+    cmap='viridis',
     linewidth=0.3,
     edgecolor='black',
     legend=False,
@@ -62,7 +67,8 @@ legend_labels = {
     5: "5 – Most deprived"
 }
 
-cmap = plt.cm.get_cmap("RdYlBu_r", 5)
+
+cmap = plt.cm.get_cmap('viridis', 5)
 
 legend_patches = [
     mpatches.Patch(color=cmap(i-1), label=legend_labels[i])
